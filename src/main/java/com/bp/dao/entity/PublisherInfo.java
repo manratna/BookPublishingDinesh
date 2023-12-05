@@ -1,4 +1,4 @@
-package com.bp.dao.entities;
+package com.bp.dao.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,29 +14,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "title_author")
+@Table(name = "pub_info")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TitleAuthor {
-	
-	@Id
+public class PublisherInfo {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
-    @ManyToOne
-    @JoinColumn(name = "au_id")
-    private Author author;
+    
+    @OneToOne
+    @JoinColumn(name = "pub_id")
+    private Publisher publisher;
 
-    @ManyToOne
-    @JoinColumn(name = "title_id")
-    private Title title;
+    @Column(name = "logo")
+    private String logo;
 
-    @Column(name = "au_ord")
-    private Byte auOrd;
-
-    @Column(name = "royaltyper")
-    private Integer royaltyPer;
+    @Column(name = "pr_info")
+    private String prInfo;
 
 }

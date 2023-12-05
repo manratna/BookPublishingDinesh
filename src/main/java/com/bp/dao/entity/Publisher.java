@@ -1,4 +1,5 @@
-package com.bp.dao.entities;
+package com.bp.dao.entity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,24 +12,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "jobs")
+@Table(name = "publishers")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
+public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "job_id")
+    @Column(name = "pub_id")
     private Long id;
 
-    @Column(name = "job_desc", nullable = false)
-    private String description;
+    @Column(name = "pub_name")
+    private String name;
 
-    @Column(name = "min_lvl", nullable = false)
-    private Integer minLevel;
+    @Column(name = "city")
+    private String city;
 
-    @Column(name = "max_lvl", nullable = false)
-    private Integer maxLevel;
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "country")
+    private String country;
 
 }

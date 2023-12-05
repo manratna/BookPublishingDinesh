@@ -1,4 +1,4 @@
-package com.bp.dao.entities;
+package com.bp.dao.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,28 +14,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "roy_sched")
+@Table(name = "title_author")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoyaltySchedule {
-    
+public class TitleAuthor {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
     @ManyToOne
+    @JoinColumn(name = "au_id")
+    private Author author;
+
+    @ManyToOne
     @JoinColumn(name = "title_id")
     private Title title;
 
-    @Column(name = "lorange")
-    private Integer lowRange;
+    @Column(name = "au_ord")
+    private Byte auOrd;
 
-    @Column(name = "hirange")
-    private Integer highRange;
-
-    @Column(name = "royalty")
-    private Integer royalty;
+    @Column(name = "royaltyper")
+    private Integer royaltyPer;
 
 }

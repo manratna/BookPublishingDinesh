@@ -1,5 +1,4 @@
-package com.bp.dao.entities;
-
+package com.bp.dao.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,19 +11,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "publishers")
+@Table(name = "authors")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Publisher {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pub_id")
+    @Column(name = "au_id")
     private Long id;
 
-    @Column(name = "pub_name")
-    private String name;
+    @Column(name = "au_lname", nullable = false)
+    private String lastName;
+
+    @Column(name = "au_fname", nullable = false)
+    private String firstName;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "city")
     private String city;
@@ -32,7 +40,10 @@ public class Publisher {
     @Column(name = "state")
     private String state;
 
-    @Column(name = "country")
-    private String country;
+    @Column(name = "zip")
+    private String zip;
+
+    @Column(name = "contract", nullable = false)
+    private boolean contract;
 
 }

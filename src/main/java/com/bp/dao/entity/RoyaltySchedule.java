@@ -1,10 +1,12 @@
-package com.bp.dao.entities;
+package com.bp.dao.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,30 +14,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "stores")
+@Table(name = "roy_sched")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Store {
-    @Id
+public class RoyaltySchedule {
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "store_id")
     private Long id;
+	
+    @ManyToOne
+    @JoinColumn(name = "title_id")
+    private Title title;
 
-    @Column(name = "store_name")
-    private String name;
+    @Column(name = "lorange")
+    private Integer lowRange;
 
-    @Column(name = "store_address")
-    private String address;
+    @Column(name = "hirange")
+    private Integer highRange;
 
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "state")
-    private String state;
-
-    @Column(name = "zip")
-    private String zip;
+    @Column(name = "royalty")
+    private Integer royalty;
 
 }

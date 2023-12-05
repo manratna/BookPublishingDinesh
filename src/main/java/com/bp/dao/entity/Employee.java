@@ -1,4 +1,4 @@
-package com.bp.dao.entities;
+package com.bp.dao.entity;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
