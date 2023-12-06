@@ -20,21 +20,18 @@ import com.bp.service.StoreService;
 @RestController
 @RequestMapping("/api/stores")
 public class StoreController {
+	
+	@Autowired
+    private StoreService storeService;
 
-    private final StoreService storeService;
-
-    //@Autowired
-    public StoreController(StoreService storeService) {
-        this.storeService = storeService;
-    }
-
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<String> addNewStore(@RequestBody StoreDTO storeDTO) {
         String result = storeService.addNewStore(storeDTO);
+        System.out.println(storeDTO.getAddress()+"controller");
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<StoreDTO>> getAllStores() {
         List<StoreDTO> stores = storeService.getAllStores();
         return new ResponseEntity<>(stores, HttpStatus.OK);

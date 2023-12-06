@@ -13,18 +13,14 @@ import com.bp.model.StoreDTO;
 @Service
 public class StoreServiceImpl implements StoreService {
 
-    private final StoreRepository storeRepository;
-
-    //@Autowired
-    public StoreServiceImpl(StoreRepository storeRepository) {
-        this.storeRepository = storeRepository;
-    }
-
+	@Autowired
+    private StoreRepository storeRepository;
+    
     @Override
     public String addNewStore(StoreDTO storeDTO) {
         Store store = new Store();
         try {
-            BeanUtils.copyProperties(store, storeDTO);
+            BeanUtils.copyProperties(storeDTO, store);
             storeRepository.save(store);
             return "Record Created Successfully";
         } catch (Exception e) {
@@ -76,7 +72,7 @@ public class StoreServiceImpl implements StoreService {
         Optional<Store> storeOptional = storeRepository.findById(id);
         storeOptional.ifPresent(store -> {
             try {
-                BeanUtils.copyProperties(store, storeDTO);
+                BeanUtils.copyProperties(storeDTO, store);
                 storeRepository.save(store);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -90,7 +86,7 @@ public class StoreServiceImpl implements StoreService {
         Optional<Store> storeOptional = storeRepository.findById(id);
         storeOptional.ifPresent(store -> {
             try {
-                BeanUtils.copyProperties(store, storeDTO);
+                BeanUtils.copyProperties(storeDTO, store);
                 storeRepository.save(store);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -102,7 +98,7 @@ public class StoreServiceImpl implements StoreService {
     private StoreDTO convertToDTO(Store store) {
         StoreDTO storeDTO = new StoreDTO();
         try {
-            BeanUtils.copyProperties(storeDTO, store);
+            BeanUtils.copyProperties(store, storeDTO);
         } catch (Exception e) {
             e.printStackTrace();
             // Handle the exception as needed
